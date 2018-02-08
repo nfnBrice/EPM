@@ -1,0 +1,230 @@
+From f5cef897435878f0f17e74db41e64e06de6ae7f1 Mon Sep 17 00:00:00 2001
+From: Alice nagel <Alice@MacBook-Pro-de-Alice.local>
+Date: Mon, 22 Jan 2018 10:01:05 +0100
+Subject: [PATCH] Fin du merge + connection fonctionnelle avec hash des
+ passwords
+
+---
+ LargeApp/app/hello.py              |  4 +++
+ LargeApp/app/templates/error.html  | 42 +++++++++++++---------
+ LargeApp/app/templates/index.html  | 72 ++------------------------------------
+ LargeApp/app/templates/signUp.html | 32 +++++++++++++----
+ 4 files changed, 58 insertions(+), 92 deletions(-)
+
+diff --git a/LargeApp/app/hello.py/Users/Alice/Downloads/BDD2.csv b/LargeApp/app/hello.py
+index 043506b..0c47df7 100644
+--- a/LargeApp/app/hello.py
++++ b/LargeApp/app/hello.py
+@@ -34,6 +34,10 @@ def showSignUp():
+ @app.route('/showSignIn')
+ def showSignin():
+ 	return render_template('signin.html')
++	
++@app.route("/projects")
++def project():
++    return render_template('projects.html')	
+ 
+ @app.route('/userHome')
+ def userHome():
+diff --git a/LargeApp/app/templates/error.html b/LargeApp/app/templates/error.html
+index 2822a66..ab1d42f 100644
+--- a/LargeApp/app/templates/error.html
++++ b/LargeApp/app/templates/error.html
+@@ -15,23 +15,33 @@
+ <body>
+  
+     <div class="container">
+-        <div class="header">
+-            <nav>
+-                <ul class="nav nav-pills pull-right">
+-                    <li role="presentation" class="active"><a href="#">Home</a>
+-                    </li>
+-                    <li role="presentation"><a href="/showSignin">Sign In</a>
+-                    </li>
+-                    <li role="presentation"><a href="/showSignUp">Sign Up</a>
+-                    </li>
+-                </ul>
+-            </nav>
+-            <h3 class="text-muted">Python Flask App</h3>
+-        </div>
+- 
+-        <div class="jumbotron">
+-            <h1>{{error}}</h1>
++   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
++      <div class="container">
++        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
++        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
++          <span class="navbar-toggler-icon"></span>
++        </button>
++        <div class="collapse navbar-collapse" id="navbarResponsive">
++          <ul class="navbar-nav ml-auto">
++            <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="#about">About</a>
++            </li>
++            <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="/showSignUp">Sign up</a>
++            </li>
++            <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="/projects">Projects</a>
++            </li>
++            <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
++            </li>
++             <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="/showSignIn">Log in</a>
++            </li>
++          </ul>
+         </div>
++      </div>
++    </nav>
+  
+  
+  
+diff --git a/LargeApp/app/templates/index.html b/LargeApp/app/templates/index.html
+index be7dbcf..bab5081 100755
+--- a/LargeApp/app/templates/index.html
++++ b/LargeApp/app/templates/index.html
+@@ -1,73 +1,6 @@
+-<<<<<<< HEAD
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+-  <head>
+-    <title>Python Flask Bucket List App</title>
+-
+-   
+-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+-
+-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+-
+-   
+-  </head>
+-
+-  <body>
+-
+-    <div class="container">
+-      <div class="header">
+-        <nav>
+-          <ul class="nav nav-pills pull-right">
+-            <li role="presentation" class="active"><a href="index.html">Home</a></li>
+-            <li role="presentation"><a href="/showSignIn">Sign In</a></li>
+- 	    <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
+-          </ul>
+-        </nav>
+-        <h3 class="text-muted">Python Flask App</h3>
+-      </div>
+-
+-      <div class="jumbotron">
+-        <h1>Bucket List App</h1>
+-        <p class="lead"></p>
+-        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Sign up today</a></p>
+-      </div>
+-
+-      <div class="row marketing">
+-        <div class="col-lg-6">
+-          <h4>Bucket List</h4>
+-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+-
+-          <h4>Bucket List</h4>
+-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+-
+-          <h4>Bucket List</h4>
+-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+-        </div>
+-
+-        <div class="col-lg-6">
+-          <h4>Bucket List</h4>
+-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+-
+-          <h4>Bucket List</h4>
+-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+-
+-          <h4>Bucket List</h4>
+-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+-        </div>
+-      </div>
+-
+-      <footer class="footer">
+-        <p>&copy; Company 2015</p>
+-      </footer>
+-
+-    </div>
+-  </body>
+-</html>
+-
+-=======
+-<!DOCTYPE html>
+-<html lang="en">
+ 
+   <head>
+ 
+@@ -109,7 +42,7 @@
+               <a class="nav-link js-scroll-trigger" href="#about">About</a>
+             </li>
+             <li class="nav-item">
+-              <a class="nav-link js-scroll-trigger" href="#services">Sign in</a>
++              <a class="nav-link js-scroll-trigger" href="/showSignUp">Sign up</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link js-scroll-trigger" href="/projects">Projects</a>
+@@ -118,7 +51,7 @@
+               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+             </li>
+ 			 <li class="nav-item">
+-              <a class="nav-link js-scroll-trigger" href="#login">Log in</a>
++              <a class="nav-link js-scroll-trigger" href="/showSignIn">Log in</a>
+             </li>
+           </ul>
+         </div>
+@@ -171,4 +104,3 @@
+   </body>
+ 
+ </html>
+->>>>>>> 88ac0c63578ee45ca3f5837d600e7213543cef72
+diff --git a/LargeApp/app/templates/signUp.html b/LargeApp/app/templates/signUp.html
+index 0c91324..1cd3963 100644
+--- a/LargeApp/app/templates/signUp.html
++++ b/LargeApp/app/templates/signUp.html
+@@ -17,13 +17,33 @@
+  
+     <div class="container">
+       <div class="header">
+-        <nav>
+-          <ul class="nav nav-pills pull-right">
+-            <li role="presentation" ><a href="main">Home</a></li>
+-            <li role="presentation"><a href="#">Sign In</a></li>
+-            <li role="presentation" class="active"><a href="#">Sign Up</a></li>
++   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
++      <div class="container">
++        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
++        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
++          <span class="navbar-toggler-icon"></span>
++        </button>
++        <div class="collapse navbar-collapse" id="navbarResponsive">
++          <ul class="navbar-nav ml-auto">
++            <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="#about">About</a>
++            </li>
++            <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="/showSignUp">Sign up</a>
++            </li>
++            <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="/projects">Projects</a>
++            </li>
++            <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
++            </li>
++       <li class="nav-item">
++              <a class="nav-link js-scroll-trigger" href="/showSignIn">Log in</a>
++            </li>
+           </ul>
+-        </nav>
++        </div>
++      </div>
++    </nav>
+         <h3 class="text-muted">Python Flask App</h3>
+       </div>
+  
+-- 
+2.10.1
+

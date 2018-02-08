@@ -8,24 +8,38 @@ html {
   width: 100%;
   height: 100%; }
 
+#titre{
+  color: Green;
+}
+
 body {
   font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif; }
 
-hr {
+#hr1 {
+  max-width: 70px;
+  border-width: 10px;
+  border-color: DarkDarkGreen; }
+
+#hr2{
   max-width: 50px;
   border-width: 3px;
-  border-color: #F05F40; }
+  border-color: DarkDarkGreen; }
+
+#limitpage {
+  max-width: 900px;
+  border-width: 3px;
+  border-color: gray; }
 
 hr.light {
-  border-color: #fff; }
+  border-color: DarkDarkGreen; }
 
 a {
-  color: #F05F40;
+  color: #BlackrockDigital;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all 0.2s; }
   a:hover {
-    color: #f05f40; }
+    color: #BlackrockDigital; }
 
 h1,
 h2,
@@ -36,7 +50,13 @@ h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; }
 
 .bg-primary {
-  background-color: #F05F40 !important; }
+  background-color: #F0FFF0 !important; }
+
+.description{
+  /*color: #FFFFFF;*/
+  text-align: center;
+  float: left;
+}
 
 .bg-dark {
   background-color: #212529 !important; }
@@ -81,10 +101,10 @@ body {
   #mainNav .navbar-brand {
     font-weight: 700;
     text-transform: uppercase;
-    color: #F05F40;
+    color: DarkDarkGreen;
     font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; }
     #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-      color: #f05f40; }
+      color: DarkDarkGreen; }
   #mainNav .navbar-nav > li.nav-item > a.nav-link,
   #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
     font-size: .9rem;
@@ -93,10 +113,10 @@ body {
     color: #212529; }
     #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
     #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-      color: #F05F40; }
+      color: DarkDarkGreen; }
     #mainNav .navbar-nav > li.nav-item > a.nav-link.active,
     #mainNav .navbar-nav > li.nav-item > a.nav-link:focus.active {
-      color: #F05F40 !important;
+      color: DarkDarkGreen !important;
       background-color: #FFFFFF; }
       #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover,
       #mainNav .navbar-nav > li.nav-item > a.nav-link:focus.active:hover {
@@ -106,7 +126,7 @@ body {
       border-color: #FFFFFF;
       background-color: #FFFFFF; }
       #mainNav .navbar-brand {
-        color: #F05F40; }
+        color: DarkDarkGreen; }
         #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
           color: #FFFFFF; }
       #mainNav .navbar-nav > li.nav-item > a.nav-link {
@@ -116,20 +136,20 @@ body {
         color: #212529; }
         #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
         #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-          color: #F05F40; }
+          color: DarkDarkGreen; }
       #mainNav.navbar-shrink {
         border-bottom: 1px solid rgba(33, 37, 41, 0.1);
         background-color: #fff; }
         #mainNav.navbar-shrink .navbar-brand {
-          color: #F05F40; }
+          color: DarkDarkGreen; }
           #mainNav.navbar-shrink .navbar-brand:focus, #mainNav.navbar-shrink .navbar-brand:hover {
-            color: #f05f40; }
+            color: DarkDarkGreen; }
         #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
         #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
           color: #212529; }
           #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
           #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-            color: #F05F40; } }
+            color: DarkDarkGreen; } }
 
 header.masthead {
   padding-top: 10rem;
@@ -210,7 +230,7 @@ header.masthead {
       font-size: 22px; } }
 
 .text-primary {
-  color: #F05F40 !important; }
+  color: DarkDarkGreen !important; }
 
 .btn {
   font-weight: 700;
@@ -222,9 +242,39 @@ header.masthead {
 .btn-xl {
   padding: 1rem 2rem; }
 
+
+.tablePortfolio{
+  width: 500px;
+  min-height: 100vh;
+  display: block;
+  background-color: #f7f7f7;
+  padding: 160px 55px 55px 55px;
+  }
+
+  .portfoliobackground {
+    width: calc(100% - 560px);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .portfoliobackground::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.1);
+  }
+
 .btn-primary {
-  background-color: #F05F40;
-  border-color: #F05F40; }
+  background-color: DarkDarkGreen;
+  border-color: DarkDarkGreen; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     color: #fff;
     background-color: #ee4b28 !important; }

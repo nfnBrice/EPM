@@ -1,152 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "index.html" %}
+{% block h %}{% endblock %}
+{% block fr %}Log out {% endblock %}
+{% block fra %}{% endblock %}
+
+{% block body %}
   <head>
-    <title>Python Flask Bucket List App</title>
- 
-    
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
- 
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <link href="../static/css/signup.css" rel="stylesheet">
-    <script src="../static/js/jquery-1.11.2.js"></script>
-    
+  <link href="/static/css/updatePortfolio.css" rel="stylesheet">
+  <script src="../static/js/jquery-1.11.2.js"></script>
   </head>
- 
-  <body>
- 
-    <div class="container">
-      <div class="header">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" ><a href="/">Home</a></li>
-            <li role="presentation" class="active"><a href="#">Sign In</a></li>
-            <li role="presentation" ><a href="/showSignUp">Sign Up</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">Python Flask App</h3>
-      </div>
- 
-      <div class="jumbotron">
-        
-        <table>
-          <tr>
-            <th>
-              Field
-            </th>
-            <th>
-              old value
-            </th>
-            <th>
-              new value
-            </th>
-          </tr>
-          <tr>
-            <td>
-              Portfolio Name
-            </td>
-            <td>
-              {% print(portfolioName) %}
-            </td>
-            <td>
-              <form class="form-newname" action="/updateName" method="post">
-                <input type="text" name="newName" id="newName"> </input>
-                <button id="newName" class="btn btn-lg btn-primary btn-block" type="submit"> Modifier </button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>Portfolio Risk</td>
-            <td>
-              {% print(portfolioRisk) %}
-            </td>
-            <td>
-              <form class="form-newrisk" action="/updateRisk" method="post">
-                <input type="text" name="newRisk" id="newRisk"> </input>
-                <button id="newRisk" class="btn btn-lg btn-primary btn-block" type="submit"> Modifier </button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>Portfolio Amount</td>
-            <td>
-              old value
-              {% print(portfolioAmount) %}
-            </td>
-            <td>
-              <form class="form-newamount" action="/updateAmount" method="post">
-                <input type="text" name="newAmount" id="newAmount"> </input>
-                <button id="newAmount" class="btn btn-lg btn-primary btn-block" type="submit"> Modifier </button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>Stocks</td>
-            <td>
-                <table>
-                  <tr>
-                    <th> Name</th>
-                    <th> Code </th>
-                    <th> Weight </th>
-                  </tr>
-                {% for each in stocks %}
-                  <tr>
-                    <td>
-                      {% print(each[1]) %}
-                    </td>
-                    <td>
-                      {% print(each[2]) %}
-                    </td>
-                    <td>
-                      {% print(each[0]) %}
-                    </td>
-                  </tr>
-                {% endfor %}
-              </table>
-            </td>
-            <td>
-              <form class="form-newstocks" action="/showUpdateStocks" method="post">
-                <button id="newStocks" class="btn btn-lg btn-primary btn-block" type="submit"> Modifier </button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>Bonds</td>
-            <td>
-                <table>
-                  <tr>
-                    <th> Name</th>
-                    <th> Issuer </th>
-                    <th> Weight </th>
-                  </tr>
-                {% for each in bonds %}
-                  <tr>
-                    <td>
-                      {% print(each[1]) %}
-                    </td>
-                    <td>
-                      {% print(each[1]) %}
-                    </td>
-                    <td>
-                      {% print(each[0]) %}
-                    </td>
-                  </tr>
-                {% endfor %}
-              </table>
-            </td>
-            <td>
-              <form class="form-newbonds" action="/showUpdateBonds" method="post">
-                <button id="newBonds" class="btn btn-lg btn-primary btn-block" type="submit"> Modifier </button>
-              </form>
-            </td>
-          </tr>
 
-
+  <body class="bodi">
+  <div class="gdiv">
+    <div class="jumbotron">
+      <table>
+        <tr>
+          <th>
+            <strong>Field</strong>
+          </th>
+          <th>
+            <strong>old value</strong>
+          </th>
+          <th>
+            <strong>new value</strong>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Portfolio Name
+          </td>
+          <td>
+            {% print(portfolioName) %}
+          </td>
+          <td>
+            <form class="form-newname" action="/updateName" method="post">
+              <input type="text" name="newName" id="newName"> </input>
+              <button id="newName"  type="submit"> Modifier </button>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>Portfolio Risk</td>
+          <td>
+            {% print(portfolioRisk) %}
+          </td>
+          <td>
+            <form class="form-newrisk" action="/updateRisk" method="post">
+              <input type="text" name="newRisk" id="newRisk"> </input>
+              <button id="newRisk" type="submit"> Modifier </button>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>Portfolio Amount</td>
+          <td>
+            old value
+            {% print(portfolioAmount) %}
+          </td>
+          <td>
+            <form class="form-newamount" action="/updateAmount" method="post">
+              <input type="text" name="newAmount" id="newAmount"> </input>
+              <button id="newAmount" type="submit"> Modifier </button>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>Stocks</td>
+          <td>
+              <table id="table2">
+                <tr id="trtable2">
+                  <th id="table2th1"> Name</th>
+                  <th id="table2th1"> Code </th>
+                  <th id="table2th1"> Weight </th>
+                </tr>
+              {% for each in stocks %}
+                <tr>
+                  <td>
+                    {% print(each[1]) %}
+                  </td>
+                  <td>
+                    {% print(each[2]) %}
+                  </td>
+                  <td>
+                    {% print(each[0]) %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </table>
+          </td>
+            <td>
+              <form class="form-newstocks" action="/changeStocks" method="post">
+                <button id="newStocks" type="submit"> Modifier </button>
+              </form>
+            </td>
+          </tr>
+        </table>
       </div>
- 
-      <footer class="footer">
-        <p>&copy; Company 2015</p>
-      </footer>
- 
-    </div>
-  </body>
-</html>
+  </div>
+</body>
+{% endblock %}

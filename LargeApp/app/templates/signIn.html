@@ -5,7 +5,7 @@
 	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="static/Login_v18/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="static/Login_v18/vendor/bootstrap/css/bootstrap.min.css">
@@ -15,25 +15,28 @@
 	<link rel="stylesheet" type="text/css" href="static/Login_v18/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="static/Login_v18/vendor/animate/animate.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="static/Login_v18/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="static/Login_v18/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="static/Login_v18/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="static/Login_v18/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="static/Login_v18/css/util.css">
 	<link rel="stylesheet" type="text/css" href="static/Login_v18/css/main.css">
 <!--===============================================================================================-->
+<script type="text/javascript" src="../static/js/jQuery.js"></script>
+<script type="text/javascript" src="../static/js/signUp.js"></script>
+
 </head>
-<body style="background-color: #666666;">
-	
+<body>
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action = "/validateLogin" method ="post">
+				<form class="login100-form validate-form" action = "/showSignUp" method ="post">
 
 				    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 				        <span class="focus-input100"></span>
@@ -46,17 +49,16 @@
 				        <label for="inputPassword" class="label-input100">Password</label>
 				        <input type="password" name="inputPassword" class="input100"  required autofocus>
 
-				    </div>     
-				    <button id="btnSignIn" class="login100-form-btn" type="submit">Sign up</button>
-		      	</form>
+				    </div>
+<input id="btnSignIn" class="login100-form-btn" type="submit" value="Sign In">
+</form>
 
 				<div class="login100-more" style="background-image: url('static/Login_v18/images/bg-01.jpg');">
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	
+
 <!--===============================================================================================-->
 	<script src="static/Login_v18/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
