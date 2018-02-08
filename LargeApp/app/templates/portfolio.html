@@ -1,0 +1,72 @@
+{% extends "index.html" %}
+{% block h %}{% endblock %}
+{% block fr %}Log out {% endblock %}
+{% block fra %}{% endblock %}
+{% block body %}
+  <head>
+    <link href="/static/css/portfolio.css" rel="stylesheet">
+  </head>
+  <body>
+
+        <table class="tablePortfolio">
+          <thead>
+          <tr>
+            <th>
+              Name
+            </th>
+            <th>
+              Risk
+            </th>
+            <th>
+              Amount
+            </th>
+            <th>
+              Stocks
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+              {% print(portfolioName) %}
+            </td>
+            <td>
+              {% print(portfolioRisk) %}
+            </td>
+            <td>
+              {% print(portfolioAmount) %}
+            </td>
+            <td>
+          </tbody>
+                <table>
+                  <tr>
+                    <th> Stock Name</th>
+                    <th> Code </th>
+                    <th> Weight </th>
+                  </tr>
+                {% for each in stocks %}
+                  <tr>
+                    <td>
+                      {% print(each[1]) %}
+                    </td>
+                    <td>
+                      {% print(each[2]) %}
+                    </td>
+                    <td>
+                      {% print(each[0]) %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+      <!--<div class="portfoliobackground">
+        <img src="static/img/stocks2.jpg" alt="Smiley face" >
+      </div>-->
+    <hr>
+  </body>
+{% endblock %}

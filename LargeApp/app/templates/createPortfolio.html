@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+{% block h %}{% endblock %}
+{% block body %}
+{% block fr %}Log out {% endblock %}
+{% block fra %}{% endblock %}
+  <head>
+    <title>Create Portfolio</title>
+
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <link href="/static/css/createPortfolio.css" rel="stylesheet">
+  </head>
+
+  <body id="bodi">
+    <div >
+      <div class="jumbotron">
+        <h3>Create your Portfolio</h3>
+        <form class="form-createPortfolio" action="/createPortfolio" method="post">
+          <label for="inputName" class="sr-only">Name</label>
+          <input type="text" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
+
+          <label for="inputAmount" class="sr-only">Amount</label>
+          <input type="double" name="inputAmount" id="inputAmount" class="form-control" placeholder="Amount" required autofocus>
+
+          <label for="inputHorizon" class="sr-only">Horizon</label>
+          <input id= "horizon" type="date" name="inputHorizon" id="inputHorizon" class="form-control" placeholder="Horizon" required autofocus>
+
+          <label for="inputRisk" class="sr-only">Risk (btw 0 and 100 for now)</label>
+          <input id= "risk" type="int" name="inputRisk" id="inputRisk" class="form-control" placeholder="Risk" required autofocus>
+          <h5>Do you have knowledge on investments? </h5>
+          <!--<label for="inputKnowledge" class="sr-only"> <h3>Do you have knowledge on investments? </h3></label>-->
+          <input type="radio" name="inputKnowledge" id="option1" value="yes"> yes </input>
+          <input type="radio" name="inputKnowledge" id="option2" value="no"> no </input>
+
+          <button id="btnSignIn"  type="submit"> <h4>Create </h4></button>
+      </form>
+      </div>
+    </div>
+    <hr id="limitpage">
+  </body>
+{%endblock%}

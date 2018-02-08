@@ -1,0 +1,108 @@
+#jumbotron
+{
+
+  /*padding-right:  10px;
+  padding-left: 50px;
+	border: 1px solid white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-bottom: 50px;
+  margin-top: 350px;
+	*/
+  padding: 25px;
+  background-color: inherit;
+  float: none;
+  /*position: absolute;*/
+  display: inline-block;
+  font-family: "Poppins-Regular", serif;
+  max-width: 600px;
+  box-sizing: content-box;
+  box-shadow: green;
+
+}
+
+
+#jumbotron1
+{
+
+  /*padding-right:  10px;
+  padding-left: 50px;
+	border: 1px solid white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-bottom: 50px;
+  margin-top: 350px;
+	*/
+  padding: 25px;
+  background-color: inherit;
+  float: none;
+  /*position: absolute;*/
+  display: inline-block;
+  font-family: "Poppins-Regular", serif;
+  max-width: 600px;
+  box-sizing: content-box;
+  box-shadow: green;
+  visibility: hidden;
+}
+
+.bodi
+{
+  background-image: url("stocks2.jpg");
+  background-repeat: no-repeat;
+  background-size: 1500px 620px;
+  font-family: "Poppins-Regular", serif;
+}
+
+
+#btnSignIn{
+	border: 2px ;
+	padding: 10px;
+	margin-top: 50px;
+	margin-left: 250px;
+	border-radius: 20px;
+	width: 200px;
+	background-color: green;
+  font-family: "Poppins-Regular", serif;
+}
+
+#addBonds
+{
+	border: 2px ;
+	padding: 10px;
+	margin-top: 50px;
+	margin-left: 250px;
+	border-radius: 20px;
+	width: 200px;
+	background-color: green;
+  font-family: "Poppins-Regular", serif;
+}
+
+
+h1{
+  color: green;
+}
+
+
+h1, th
+{
+	border: 1px;
+	text-align: center;
+  font-family: "Poppins-Regular", serif;
+}
+
+#choix{
+  color: black;
+}
+
+th
+{
+  margin-left: 30px;
+  font-weight: bold;
+  font-size: 200%;
+  text-decoration: overline;
+  width: 50px;
+}
