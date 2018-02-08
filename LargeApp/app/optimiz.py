@@ -12,6 +12,7 @@ import sys
 import time
 import numpy as np
 import pandas as pd
+import math 
 from scipy.optimize import minimize
 from concurrent.futures import ThreadPoolExecutor, wait
 
@@ -19,32 +20,33 @@ app = Flask(__name__)
 app.secret_key = 'why would I tell you my secret key?'
 
 
-#data base configuration
+#data base configuration 
 mysql = MySQL()
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ' '
+app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'ma_base'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-app.config['MYSQL_DATABASE_PORT'] = 3306
+app.config['MYSQL_DATABASE_PORT'] = 8889
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://dayenu:secret.word@localhost/dayenu?unix_socket=/usr/local/mysql5/mysqld.sock'
 
 mysql.init_app(app)
+
 
 
 def get_ochl(stockID):
     """ Get OCHL Data from the database for one stock
     :param stockID: One stok selected
     :type stockID: int
-    :return: OCHL Data of the stock
+    :return: OCHL Data of the stock 
     :rtype: DataFrame
     """
-    #get the data of every stocks added to the portfolio by the user
-    try:
+    #get the data of every stocks added to the portfolio by the user 
+    try: 
         conn = mysql.connect()
         cursor = conn.cursor()
         #print(stockID)
-        cursor.callproc('sp_getOCHLbyStockID', (stockID,)) #a coder
+        cursor.callproc('sp_getOCHLbyStockID', (stockID,)) #a coder 
         ochlChart = cursor.fetchall()
         #print("ochlchart")
         ochlChartList = [ ]
@@ -53,17 +55,17 @@ def get_ochl(stockID):
             ochlChartList.append(each[1]);
 
         #print(ochlChartList);
-        cursor.callproc('sp_StockNamebyID', (stockID,)) #a coder
+        cursor.callproc('sp_StockNamebyID', (stockID,)) #a coder 
         stockName = cursor.fetchall()
 
         return ochlChartList
 
     finally:
-        cursor.close()
+        cursor.close() 
         conn.close()
 
     """  if len(portfolioLinkData) > 0 and stockData > 0:
-        ochlChart = pd.DataFrame.from_dict(portfolioLinkData) #source possible de bugg ici est-ce que data est une liste ou pas?
+        ochlChart = pd.DataFrame.from_dict(portfolioLinkData) #source possible de bugg ici est-ce que data est une liste ou pas? 
         ochlChart.rename(
             columns={'C': 'close', 'H': 'high', 'L': 'low', 'O': 'open', 'T': 'date', 'V': 'volume'},
             inplace=True
@@ -112,15 +114,17 @@ def evaluate_portefolio(wei, returns_vec):
     """
     means = [ ]
     r= [ ]
-    for i in range(0,len(returns_vec)):
+    for i in range(0,len(returns_vec)): 
         r.append(returns_vec[i])
         #returnv=np.array(returns_vec[i])
         means.append(np.mean(returns_vec[i]))
 
-    p = np.asmatrix(means)
-    w = np.asmatrix(wei)
-    mu = w * p.T
-    c = np.asmatrix(np.cov(r))
+    p = np.asmatrix(means) #moyenne rendement
+    w = np.asmatrix(wei) #matrice de poids aléatoires
+    mu = w * p.T # matrice de rendement possible 
+
+    c = np.asmatrix(np.cov(r)) #matrice des risques 
+
     sigma = np.sqrt(w * c * w.T)
     print(mu)
     return mu, sigma
@@ -134,11 +138,11 @@ def markowitz_optimization(returns_vec, evaluate=False):
     """
     nb_stocks = len(returns_vec)
     #print(returns_vec)
-
+ 
     def optimal_portfolio():
         def con_sum(t):
             # Short ? -> np.sum(np.abs(t))-1
-            return np.sum(t) - 1
+            return np.sum(t) - 1 
 
         def con_no_short(t):
             # Short support ? add constraint for all weight > 0 to force non short
@@ -170,7 +174,7 @@ def markowitz_optimization(returns_vec, evaluate=False):
     return weights, means, stds, opt_mean, opt_std
 
 def optimiz(stocks):
-    """ optimisation
+    """ optimisation 
     :param stocks : list of stock id chosen by the user
     :returns: weights, means, stds, opt_mean, opt_std
     TODO : implement short selling (numeric instability w/ constraints)
@@ -180,12 +184,12 @@ def optimiz(stocks):
 
     if len(stocks) < 2 or len(stocks) > 10:
         return {"error": "2 to 10 stocks"}
-
+    
     else:
         caca2= [ ]
         for stockID in stocks:
             caca2.append(get_ochl(stockID))
-
+        
         weights, m, s, a, b = markowitz_optimization(caca2, False)
 
         j=0
@@ -200,13 +204,21 @@ def optimiz(stocks):
                 stocks.remove(stocks[y])
                 weights, m, s, a, b = markowitz_optimization(caca2, False)
                 y=-1
-
             y=y+1
-
-
         i=0;
         for stockID in stocks:
-            cursor.callproc('sp_updateWeights', (session['portfolio'], stockID ,weights[i].item())) #a coder
-            conn.commit()
+            cursor.callproc('sp_getPortfolioFromPortfolioID',(session['portfolio'],))
+            CurrentPortfolio=cursor.fetchall()
+            print("stockID",stockID)
+            print("i",i)
+            weight=weights[i].item()
+            print("weight",weight)
+            cursor.callproc('sp_getStockInfoFromLinkID',(stockID,))
+            CurrentStock=cursor.fetchall()
+            amount=((CurrentPortfolio[0][5]/100)*(CurrentPortfolio[0][1]*weights[i].item()))/CurrentStock[0][3]
+            print(CurrentStock[0][3])
+
+            cursor.callproc('sp_updateStockWeights', (session['portfolio'], stockID ,weight,amount)) #a coder
+            conn.commit() 
             i=i+1
         return render_template('error.html',error = 'portfolio updated')

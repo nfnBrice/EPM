@@ -1,4 +1,4 @@
-$ deletePortfolio(portfolioToDelete)()
+$ deletePortfolio(portfolioToDelete)() 
 {
     $.ajax(
     {

@@ -1,8 +1,6 @@
 {% extends "index.html" %}
 {% block h %}{% endblock %}
 {% block body %}
-{% block fr %}Log out {% endblock %}
-{% block fra %}{% endblock %}
   <head>
     <title>Add Stocks</title>
 
@@ -12,16 +10,17 @@
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet"> -->
     <script src="../static/js/jquery-1.11.2.js"></script>
     <script src="../static/js/Portfolio.js"></script>
-    <link href="/static/css/userHome.css" rel="stylesheet">
+    <link href="/static/css/addStocks.css" rel="stylesheet">
 
   </head>
 
-  <body class="bodi">
+  <body>
     <section div="sectionaddsto">
+
       <div class="container">
+
         <div class="jumbotron">
           <h1>List of Portfolios</h1>
-          <hr id="Separe">
           <table>
             <tr>
               <th> Name</th>
@@ -34,7 +33,7 @@
             {% for portfolio in data %}
               <tr>
                 <td>
-                  <form class="form-showPortfolio" action="/showPortfolio" method="post">
+                  <form class="form-showPortfolio" action="changePortfolioNbForShow" method="post">
                     <input type=hidden value="{{ portfolio[0] }}" name="inputPortfolioToShow"></input>
                     <button id="btnShow" class="btn btn-lg btn-primary btn-block" type="submit"> {% print(portfolio[4]) %} </button>
                   </form>
@@ -55,7 +54,7 @@
                   </form>
                 </td>
                 <td>
-                  <form class="form-updatePortfolio" action="/showUpdatePortfolio" method="post">
+                  <form class="form-updatePortfolio" action="/changePortfolioNbForUpdate" method="post">
                     <input type=hidden value="{{ portfolio[0] }}" name="inputPortfolioToUpdate"></input>
                     <button id="btUpdate" class="btn btn-lg btn-primary btn-block" type="submit"> Update </button>
                   </form>
@@ -63,7 +62,7 @@
               </tr>
             {% endfor %}
           </table>
-            <a class="btn btn-lg btn-primary btn-block" id = "create" href="/showCreatePortfolio">Create</a>
+            <a class="btn btn-lg btn-primary btn-block" href="/showCreatePortfolio">Create</a>
         </div>
       </div>
 

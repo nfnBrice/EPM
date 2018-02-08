@@ -5,7 +5,11 @@ CREATE DATABASE IF NOT EXISTS ma_base;
 USE ma_base;
 
 
+<<<<<<< HEAD
+###################################### DATABASE SETUP ######################################
+=======
 # DATABASE SETUP
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
 
 CREATE TABLE Users(
     UserID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -31,7 +35,6 @@ CREATE TABLE Bond(
     Country VARCHAR(50),
     Issuer VARCHAR (100),
     Currency VARCHAR(3),
-    Status VARCHAR(30),
     Coupon decimal,
     Issue_amount int,
     USD_equivalent int,
@@ -40,7 +43,6 @@ CREATE TABLE Bond(
     ISIN VARCHAR(20),
     Start_of_placement DATE,
     End_of_placement DATE,
-    Maturity DATE,
     Foreign_rating VARCHAR(30),
     Local_rating VARCHAR(30),
     Stock_exchange VARCHAR(50),
@@ -48,12 +50,9 @@ CREATE TABLE Bond(
     Indicative_price decimal,
     Effective_yield decimal,
     Duration decimal,
-    Vector_image VARCHAR(10000),
     #Profit INT,
     #Period VARCHAR(30),
     #Parvalue VARCHAR(30),
-    PortfolioID int,
-    FOREIGN KEY (PortfolioID) REFERENCES Portfolio(PortfolioID)
     );
 
 CREATE TABLE Stock(
@@ -66,12 +65,29 @@ CREATE TABLE Project(
     ProjectID INT NOT NULL PRIMARY KEY AUTO_INCREMENT
     );
 
+<<<<<<< HEAD
+CREATE TABLE PortfolioLinkToStock(
+    PortfolioLinkToStockID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Quantity INT DEFAULT 0,
+    Weight INT DEFAULT 0,
+=======
 CREATE TABLE PortfolioLink(
     PortfolioLinkID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
     PortfolioID INT,
     StockID INT,
     FOREIGN KEY (PortfolioID) REFERENCES Portfolio(PortfolioID),
     FOREIGN KEY (StockID) REFERENCES Stock(StockID)
+    );
+
+CREATE TABLE PortfolioLinkToBond(
+    PortfolioLinkToBondID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Quantity INT DEFAULT 0,
+    Weight INT DEFAULT 0,
+    PortfolioID INT,
+    BondID INT,
+    FOREIGN KEY (PortfolioID) REFERENCES Portfolio(PortfolioID),
+    FOREIGN KEY (BondID) REFERENCES Bond(BondID)
     );
 
 CREATE TABLE Pricehistory(
@@ -85,8 +101,10 @@ CREATE TABLE Pricehistory(
     FOREIGN KEY (StockID) REFERENCES Stock(StockID)
     );
 
-# STORED PROCEDURES SETUP
+###################################### STORED PROCEDURE SETUP ##############################
 
+
+########################################## USERS ###########################################
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createUser`(
     IN p_mail VARCHAR(100),
@@ -132,6 +150,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_connect`
     END$$
     DELIMITER ;
 
+
+######################################### PORTFOLIO ########################################
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createPortfolio`(
     IN p_amount decimal,
@@ -162,11 +182,76 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createPortfolio`(
     DELIMITER ;
 
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getPortfoliosPerUser`(
+    IN p_userID INT
+    )
+    BEGIN   
+        select * from Portfolio where UserID = p_userID;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_deletePortfolio`(
+    IN p_portfolioID INT
+    )
+    BEGIN   
+        DELETE from PortfolioLinkToStock where PortfolioID = p_portfolioID;
+        DELETE from Portfolio where PortfolioID = p_portfolioID;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_updateNamePortfolio`(
+    IN p_name VARCHAR(50),
+    IN p_portfolioID int 
+    )
+    BEGIN   
+        UPDATE Portfolio SET Name=p_name WHERE PortfolioID = p_portfolioID;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_updateRiskPortfolio`(
+    IN p_risk INT(100),
+    IN p_portfolioID INT 
+    )
+    BEGIN   
+        UPDATE Portfolio SET Risk=p_risk WHERE PortfolioID = p_portfolioID;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getPortfolioFromPortfolioID`(
+    IN p_portfolioID INT
+    )
+    BEGIN   
+        select * from Portfolio where PortfolioID = p_portfolioID;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_updateAmountPortfolio`(
+    IN p_amount INT,
+    IN p_portfolioID INT
+    )
+    BEGIN   
+        UPDATE Portfolio SET Amount=p_amount WHERE PortfolioID = p_portfolioID;
+    END$$
+    DELIMITER ;
+
+
+######################################### STOCKS ###########################################
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_StockNamebyID`(
     IN p_StockID INT
     )
+<<<<<<< HEAD
+    BEGIN     
+        select * from Stock where StockID = p_StockID;
+=======
     BEGIN
         select * from Stock where StockID = StockID;
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
     END$$
     DELIMITER ;
 
@@ -179,18 +264,31 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getAllStocks`()
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getStocksbyID`()
+<<<<<<< HEAD
+    BEGIN     
+        select * from PortfolioLinkToStock;
+=======
     BEGIN
         select * from PortfolioLink;
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
     END$$
     DELIMITER ;
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_linkStockToPortfolio`(
+<<<<<<< HEAD
+    IN p_portfolioID INT, 
+    IN p_stockToAddID INT
+    )
+    BEGIN     
+        insert into PortfolioLinkToStock
+=======
     IN p_portfolioID INT,
     IN p_stockToAddID INT
     )
     BEGIN
         insert into PortfolioLink
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
         (
             PortfolioID,
             StockID
@@ -200,7 +298,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_linkStockToPortfolio`(
             p_portfolioID,
             p_stockToAddID
         );
-        SELECT * from PortfolioLink where PortfolioLinkID = LAST_INSERT_ID();
+        SELECT * from PortfolioLinkToStock where PortfolioLinkToStockID = LAST_INSERT_ID();
     END$$
     DELIMITER ;
 
@@ -215,22 +313,32 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getOCHLbyStockID`(
     DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_updateWeights`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_updateStockWeights`(
     IN p_portfolioID INT,
     IN p_stockID INT,
     IN p_weight float
     )
+<<<<<<< HEAD
+    BEGIN   
+        UPDATE PortfolioLinkToStock SET Weight=p_weight WHERE PortfolioID = p_portfolioID AND StockID = p_stockID;
+=======
     BEGIN
         UPDATE PortfolioLink SET Weight=p_weight WHERE PortfolioID = p_portfolioID AND StockID = p_stockID;
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
     END$$
     DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getLinkDataFromPortfolioID`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getStockLinkDataFromPortfolioID`(
     IN p_portfolioID INT
     )
+<<<<<<< HEAD
+    BEGIN   
+        select * from PortfolioLinkToStock where PortfolioID = p_portfolioID;
+=======
     BEGIN
         select * from PortfolioLink where PortfolioID = p_portfolioID;
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
     END$$
     DELIMITER ;
 
@@ -244,31 +352,119 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getStockInfoFromLinkID`(
     DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getPortfoliosPerUser`(
-    IN p_userID INT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_emptyStocksPortfolio`(
+    IN p_portfolioID INT
     )
+<<<<<<< HEAD
+    BEGIN   
+        DELETE from PortfolioLinkToStock where PortfolioID = p_portfolioID;
+=======
     BEGIN
         select * from Portfolio where UserID = p_userID;
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
     END$$
     DELIMITER ;
 
 
+######################################### BONDS ############################################
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_deletePortfolio`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_BondsNamebyID`(
+    IN p_BondID INT
+    )
+    BEGIN     
+        select * from Bond where BondID = p_BondID ;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getAllBonds`()
+    BEGIN     
+        select * from Bond;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getBondsbyID`()
+    BEGIN     
+        select * from PortfolioLinkToBond;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_linkBondsToPortfolio`(
+    IN p_portfolioID INT, 
+    IN p_bondToAddID INT
+    )
+    BEGIN     
+        insert into PortfolioLinkToBond
+        (
+            PortfolioID,
+            BondID
+        )
+        values
+        (
+            p_portfolioID,
+            p_bondToAddID
+        );
+        SELECT * from PortfolioLinkToBond where PortfolioLinkToBondID = LAST_INSERT_ID();
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getOCHLbyBondID`(
+    IN p_bondID INT
+    )
+    
+    BEGIN     
+         select * from Pricehistory where BondID = p_bondID;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_updateBondWeights`(
+    IN p_portfolioID INT,
+    IN p_bondID INT,
+    IN p_weight float
+    )
+    BEGIN   
+        UPDATE PortfolioLinkToBond SET Weight=p_weight WHERE PortfolioID = p_portfolioID AND BondID = p_bondID;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getBondLinkDataFromPortfolioID`(
     IN p_portfolioID INT
     )
+<<<<<<< HEAD
+    BEGIN   
+        select * from PortfolioLinkToBond where PortfolioID = p_portfolioID;
+=======
     BEGIN
         DELETE from PortfolioLink where PortfolioID = p_portfolioID;
         DELETE from Portfolio where PortfolioID = p_portfolioID;
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
     END$$
     DELIMITER ;
 
-# TO ADD TO DATABASE
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getPortfolioFromPortfolioID`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getBondInfoFromLinkID`(
+    IN p_bondID INT
+    )
+    BEGIN   
+        select * from Bond where BondID = p_bondID;
+    END$$
+    DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_emptyBondsPortfolio`(
     IN p_portfolioID INT
     )
+<<<<<<< HEAD
+    BEGIN   
+        DELETE from PortfolioLinkToBond where PortfolioID = p_portfolioID;
+=======
     BEGIN
         select * from Portfolio where PortfolioID = p_portfolioID;
+>>>>>>> d132278cd52a0089c041885eeece9df17d57f9b8
     END$$
     DELIMITER ;

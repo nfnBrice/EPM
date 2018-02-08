@@ -1,8 +1,6 @@
 {% extends "index.html" %}
 {% block h %}{% endblock %}
 {% block body %}
-{% block fr %}Log out {% endblock %}
-{% block fra %}{% endblock %}
   <head>
     <title>Create Portfolio</title>
 
@@ -10,11 +8,14 @@
     <link href="/static/css/createPortfolio.css" rel="stylesheet">
   </head>
 
-  <body id="bodi">
-    <div >
+  <body>
+
+    <div class="container">
+
       <div class="jumbotron">
-        <h3>Create your Portfolio</h3>
+        <h1>Create your Portfolio</h1>
         <form class="form-createPortfolio" action="/createPortfolio" method="post">
+          
           <label for="inputName" class="sr-only">Name</label>
           <input type="text" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
 
@@ -26,15 +27,15 @@
 
           <label for="inputRisk" class="sr-only">Risk (btw 0 and 100 for now)</label>
           <input id= "risk" type="int" name="inputRisk" id="inputRisk" class="form-control" placeholder="Risk" required autofocus>
-          <h5>Do you have knowledge on investments? </h5>
-          <!--<label for="inputKnowledge" class="sr-only"> <h3>Do you have knowledge on investments? </h3></label>-->
+
+          <label for="inputKnowledge" class="sr-only"> Do you have knowledge on investments? </label>
           <input type="radio" name="inputKnowledge" id="option1" value="yes"> yes </input>
           <input type="radio" name="inputKnowledge" id="option2" value="no"> no </input>
 
-          <button id="btnSignIn"  type="submit"> <h4>Create </h4></button>
+        <button id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="submit"> Create </button>
       </form>
       </div>
+
     </div>
-    <hr id="limitpage">
   </body>
 {%endblock%}

@@ -1,152 +1,37 @@
-@import "compass/css3";
-
 .jumbotron
 {
 
-  font: 95% Arial, Helvetica, sans-serif;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 16px;
-    background: #gray;
-    font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
-    background-color: inherit;
-
+  padding-right:  10px;
+  padding-left: 50px;
+	border: 2px solid white;
+  background-color: white;
+	margin: 100px;
+	height: auto;
+	border-radius: 10px;
+	border-color: Gainsboro;
 }
 
-body {
-  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
-  background-image: url("createPortfolio.png");
-  background-repeat: no-repeat;
-  background-size: 1500px 620px;
-  float: left;
-}
+/*#form-control
+{
+	margin: 100px;
+	width: 200px;
 
-/*.container{
-  background-color:#F0FFF0;
+
 }*/
-
-.jumbotron h3{
-    background: green;
-    text-transform: uppercase;
-    padding: 20px 0;
-    font-size: 140%;
-    font-weight: 300;
-    text-align: center;
-    color: #fff;
-    margin: -16px -16px 16px -16px;
-    font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
-
-  }
-
-
-input[type=date] {
-    /*height: 35px;*/
-    margin: 0 auto;
-    font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 140%;
-    font-size: 95%
-    outline: none;
-    border: 0;
-    border-radius: 3px;
-    padding: 3%;
-    color: #fff;
-
-    &::-webkit-datetime-edit-month-field {
-      color: green;
-    }
-    &::-webkit-datetime-edit-day-field {
-      color: white;
-    }
-    &::-webkit-datetime-edit-year-field {
-      color: green;
-    }
-
-    &::-webkit-clear-button {
-      font-size: 140%;
-      height: 10px;
-      position: relative;
-      right: 5px;
-      margin-right: 4px;
-    }
-    &::-webkit-inner-spin-button {
-      height: 10px;
-    }
-    &::-webkit-calendar-picker-indicator {
-      font-size: 140%;
-
-
-      &:hover {
-        background-color: lighten(#2f2f2f,40%);
-        color: darken(#fff, 10%);
-        cursor: pointer;
-      }
-      &:active {
-        color: green;
-      }
-    }
-  }
-
-
-#inputName,
-#inputAmount,
-#inputHorizon,
-#inputRisk{
-
-      -webkit-transition: all 0.30s ease-in-out;
-      -moz-transition: all 0.30s ease-in-out;
-      -ms-transition: all 0.30s ease-in-out;
-      -o-transition: all 0.30s ease-in-out;
-      outline: none;
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      width: 100%;
-      background: #fff;
-      margin-bottom: 4%;
-      border: 1px solid #ccc;
-      padding: 3%;
-      color: #555;
-      font: 95% ;
-      font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
-
-}
-
-h5{
-  background: gray;
-  padding: 20px 0;
-  font-size: 140%;
-  font-weight: 300;
-  text-align: center;
-  color: #fff;
-  margin-top: auto;
-}
-
-#option1
+.inputHorizon
 {
-display: inline-block;
-margin-bottom: 50px;}
-font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
-
-
-#option2
-{
-display: inline-block;
-margin-bottom: 50px;
-font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+	margin: 100px;
+	width: 400px;
 }
 
-#btnSignIn{
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      width: 100%;
-      padding: 3%;
-      background: green;
-      border-bottom: 2px solid green;
-      border-top-style: none;
-      border-right-style: none;
-      border-left-style: none;
-      color: #fff;
-      font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+#btnSignIn
+{
+	border: 2px ;
+	padding: 10px;
+	margin-top: 20px;
+	margin-left: 310px;
+	border-radius: 20px;
+	width: 200px;
+	background-color: MidnightBlue;
 
-  }
+}

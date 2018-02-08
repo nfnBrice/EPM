@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+{% block h %}{% endblock %}
+{% block body %}
+  <head>
+    <title>Add Stocks</title>
+
+
+    <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet"> -->
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <link href="/static/css/addStocks.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <section div="sectionaddsto">
+
+      <div class="container">
+
+        <div class="jumbotron">
+          <h1>Update your selected stocks</h1>
+          <form class="form-addStocks" action="/addBonds" method="post">
+            <table>
+              <tr>
+                <th> Name</th>
+                <th> Code </th>
+                <th> Select </th>
+              </tr>
+            {% for bond in data %}
+              <tr>
+                <td>
+                  {% print(bond[2]) %}
+                </td>
+                <td>
+                  {% print(bond[1]) %}
+                </td>
+                <td>
+                    <input type="radio" name={%print(bond[0])%} id="stock"> </input>
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+
+            <button id="addStockss" class="btn btn-lg btn-primary btn-block" type="submit"> Add </button>
+          </form>
+        </div>
+      </div>
+
+    </section>
+  </body>
+{% endblock %}
