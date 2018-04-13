@@ -5,6 +5,10 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
+
+
+
+
 @app.route("/projects")
 def project():
     return render_template('projects.html')
